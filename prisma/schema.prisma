@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id         String     @id @default(uuid())
+  name       String
+  email      String     @unique
+  password   String
+  users      User[]
+  clients    Client[]
+  categories Category[]
+
+  @@map("admin")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  password   String
+  admin      Admin?   @relation(fields: [adminId], references: [id])
+  adminId    String?
+  clients    Client[]
+  created_at DateTime @default(now())
+
+  @@map("user")
+}
+
+model Category {
+  id         String   @id @default(uuid())
+  name       String
+  cor        String
+  created_at DateTime @default(now())
+  admin      Admin?   @relation(fields: [adminId], references: [id])
+  adminId    String?
+
+  Client   Client? @relation(fields: [clientId], references: [id])
+  clientId String?
+
+  @@map("category")
+}
+
+model Client {
+  id         String     @id @default(uuid())
+  name       String
+  phone      String
+  category   Category[]
+  created_at DateTime   @default(now())
+
+  Admin   Admin?  @relation(fields: [adminId], references: [id])
+  adminId String?
+  User    User?   @relation(fields: [userId], references: [id])
+  userId  String?
+
+  @@map("client")
+}
