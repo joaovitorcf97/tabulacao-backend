@@ -33,8 +33,6 @@ class CreateUserUseCase {
       }
     });
 
-    console.log(user);
-
     return user;
   }
 }
