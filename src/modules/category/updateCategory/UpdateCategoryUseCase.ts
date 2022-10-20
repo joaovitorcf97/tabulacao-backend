@@ -3,13 +3,15 @@ import { prisma } from "../../../database/prismaClient";
 interface IUpdateCategory {
   name: string;
   id: string;
+  color: string;
 }
 
 class UpdateCategoryUseCase {
-  async execute({ name, id }: IUpdateCategory) {
+  async execute({ name, id, color }: IUpdateCategory) {
     const categoryExist = await prisma.category.findFirst({
       where: {
         id,
+
       },
     });
 
@@ -23,6 +25,8 @@ class UpdateCategoryUseCase {
       },
       data: {
         name,
+        cor: color,
+        updatedAt: new Date(),
       }
     });
 

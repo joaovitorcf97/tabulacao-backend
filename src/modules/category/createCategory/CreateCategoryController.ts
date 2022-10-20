@@ -13,6 +13,7 @@ class CreateCategoryController {
       id_admin,
     });
 
+    console.log(newCategory);
     return response.json(newCategory);
   }
 }

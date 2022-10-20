@@ -7,6 +7,7 @@ import { FindAllUsersController } from "./modules/admin/findAllUsers/FindAllUser
 import { CreateCategoryController } from "./modules/category/createCategory/CreateCategoryController";
 import { DeleteCategoryController } from "./modules/category/deleteCategory/DeleteCategoryController";
 import { FindlAllCategoriesController } from "./modules/category/findAllCategories/FindAllCategoriesController";
+import { FindCategoryController } from "./modules/category/findCategory/FindCategoryController";
 import { UpdateCategoryController } from "./modules/category/updateCategory/UpdateCategoryController";
 import { CreateUserController } from "./modules/user/createUser/CreateUserController";
 import { DeleteUserController } from "./modules/user/deleteUser/DeleteUserController";
@@ -27,6 +28,7 @@ const deleteUserController = new DeleteUserController();
 
 const createCategoryController = new CreateCategoryController();
 const findlAllCategoriesController = new FindlAllCategoriesController();
+const findCategoryController = new FindCategoryController();
 const updateCategoryController = new UpdateCategoryController();
 const deleteCategoryController = new DeleteCategoryController();
 
@@ -42,6 +44,7 @@ routes.put('/user/update-password/:id', ensureAuthenticateAdmin, updateUserContr
 routes.delete('/user/delete-user/:id', ensureAuthenticateAdmin, deleteUserController.handle);
 
 // Category
+routes.get('/category/find-one/:id', ensureAuthenticateAdmin, findCategoryController.handle);
 routes.post('/category/create', ensureAuthenticateAdmin, createCategoryController.handle);
 routes.get('/category/find', ensureAuthenticateAdmin, findlAllCategoriesController.handle);
 routes.put('/category/update/:id', ensureAuthenticateAdmin, updateCategoryController.handle);
