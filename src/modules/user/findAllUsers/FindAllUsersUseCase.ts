@@ -7,6 +7,9 @@ class FindAllUsersUseCase {
         id: true,
         name: true,
         email: true,
+        role: true,
+        clients: true,
+        categories: true,
         created_at: true,
       }
     });

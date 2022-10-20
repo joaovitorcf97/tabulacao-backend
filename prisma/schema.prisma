@@ -7,30 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Admin {
+enum ROLE {
+  USER
+  ADMIN
+}
+
+model User {
   id         String     @id @default(uuid())
   name       String
   email      String     @unique
   password   String
-  users      User[]
+  role       ROLE       @default(USER)
   clients    Client[]
   categories Category[]
   created_at DateTime   @default(now())
   updatedAt  DateTime?  @updatedAt
-
-  @@map("admin")
-}
-
-model User {
-  id         String    @id @default(uuid())
-  name       String
-  email      String    @unique
-  password   String
-  admin      Admin?    @relation(fields: [adminId], references: [id])
-  adminId    String?
-  clients    Client[]
-  created_at DateTime  @default(now())
-  updatedAt  DateTime? @updatedAt
 
   @@map("user")
 }
@@ -41,8 +32,8 @@ model Category {
   cor        String
   created_at DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
-  admin      Admin?    @relation(fields: [adminId], references: [id])
-  adminId    String?
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     String?
 
   @@map("category")
 }
@@ -53,9 +44,7 @@ model Client {
   phone      String
   created_at DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
-  Admin      Admin?    @relation(fields: [adminId], references: [id])
-  adminId    String?
-  User       User?     @relation(fields: [userId], references: [id])
+  user       User?     @relation(fields: [userId], references: [id])
   userId     String?
 
   @@map("client")

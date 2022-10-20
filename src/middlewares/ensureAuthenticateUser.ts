@@ -4,7 +4,7 @@ interface IPayload {
   sub: string;
 }
 
-export async function ensureAuthenticateAdmin(request: Request, response: Response, next: NextFunction) {
+export async function ensureAuthenticateUser(request: Request, response: Response, next: NextFunction) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -16,7 +16,7 @@ export async function ensureAuthenticateAdmin(request: Request, response: Respon
   const [, toke] = authHeader.split(' ');
 
   try {
-    const { sub } = verify(toke, 'f298cce7f21371c26f85af48489b075e') as IPayload;
+    const { sub } = verify(toke, 'f298cce7f21371c26f85af48489b075d') as IPayload;
 
     request.id_admin = sub;
 

@@ -1,3 +1,4 @@
+import { ROLE } from "@prisma/client";
 import { hash } from "bcrypt";
 import { prisma } from "../../../database/prismaClient";
 
@@ -5,11 +6,11 @@ interface IUser {
   name: string;
   email: string;
   password: string;
-  id_admin: string;
+  role: ROLE;
 }
 
 class CreateUserUseCase {
-  async execute({ name, email, password, id_admin }: IUser) {
+  async execute({ name, email, password, role }: IUser) {
     const userExist = await prisma.user.findFirst({
       where: {
         email: {
@@ -29,7 +30,7 @@ class CreateUserUseCase {
         name,
         email,
         password: hashPassword,
-        adminId: id_admin,
+        role,
       }
     });
 

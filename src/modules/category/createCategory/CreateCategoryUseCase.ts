@@ -3,11 +3,11 @@ import { prisma } from "../../../database/prismaClient";
 interface ICreateCategory {
   name: string;
   color: string;
-  id_admin: string;
+  id_user: string;
 }
 
 class CreateCategoryUseCase {
-  async execute({ name, color, id_admin }: ICreateCategory) {
+  async execute({ name, color, id_user }: ICreateCategory) {
     const categoryExist = await prisma.category.findFirst({
       where: {
         name: {
@@ -24,7 +24,7 @@ class CreateCategoryUseCase {
       data: {
         name,
         cor: color,
-        adminId: id_admin,
+
       }
     });
 
