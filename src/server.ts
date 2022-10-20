@@ -1,8 +1,19 @@
+import cors from 'cors';
 import express, { NextFunction, Request, Response } from "express";
 import 'express-async-errors';
 import { routes } from "./routes";
 
 const app = express();
+
+app.use(cors());
+
+// app.use((request: Request, response: Response, next: NextFunction) => {
+//   response.header("Access-Control-Allow-Origin", "*");
+//   response.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+
+//   app.use(cors());
+//   next();
+// });
 
 app.use(express.json());
 app.use(routes);
