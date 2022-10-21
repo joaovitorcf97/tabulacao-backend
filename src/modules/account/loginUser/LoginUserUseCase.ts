@@ -28,10 +28,12 @@ class LoginUserUseCase {
     const token = sign(
       { email },
       'f298cce7f21371c26f85af48489b075d',
-      { subject: user.id, expiresIn: '1d' },
+      { subject: user.id, expiresIn: '1d', }
     );
 
-    return token;
+    return {
+      token, user,
+    };
   }
 }
 

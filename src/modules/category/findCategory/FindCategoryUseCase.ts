@@ -10,7 +10,7 @@ class FindCategoryUseCase {
         id: true,
         name: true,
         cor: true,
-        adminId: true,
+        user: true,
         created_at: true,
       }
     });

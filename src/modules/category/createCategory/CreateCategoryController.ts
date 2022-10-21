@@ -4,16 +4,16 @@ import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 class CreateCategoryController {
   async handle(request: Request, response: Response) {
     const { name, color } = request.body;
-    const { id_admin } = request;
+    const { id_user } = request;
 
     const createCategoryUseCase = new CreateCategoryUseCase();
     const newCategory = await createCategoryUseCase.execute({
       name,
       color,
-      id_admin,
+      id_user,
     });
 
-    console.log(newCategory);
+    console.log(request.params);
     return response.json(newCategory);
   }
 }

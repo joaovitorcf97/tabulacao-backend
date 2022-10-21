@@ -18,7 +18,7 @@ export async function ensureAuthenticateUser(request: Request, response: Respons
   try {
     const { sub } = verify(toke, 'f298cce7f21371c26f85af48489b075d') as IPayload;
 
-    request.id_admin = sub;
+    request.id_user = sub;
 
     return next();
   } catch (err) {

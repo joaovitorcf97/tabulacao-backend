@@ -24,7 +24,7 @@ class CreateCategoryUseCase {
       data: {
         name,
         cor: color,
-
+        userId: id_user,
       }
     });
 
