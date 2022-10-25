@@ -13,7 +13,6 @@ class CreateCategoryController {
       id_user,
     });
 
-    console.log(request.params);
     return response.json(newCategory);
   }
 }

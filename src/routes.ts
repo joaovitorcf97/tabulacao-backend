@@ -1,12 +1,17 @@
 import { Router } from "express";
 import { ensureAuthenticateUser } from "./middlewares/ensureAuthenticateUser";
-import { LoginUserController } from "./modules/account/loginUser/LoginUserController";
 
+import { LoginUserController } from "./modules/account/loginUser/LoginUserController";
 import { CreateCategoryController } from "./modules/category/createCategory/CreateCategoryController";
 import { DeleteCategoryController } from "./modules/category/deleteCategory/DeleteCategoryController";
 import { FindlAllCategoriesController } from "./modules/category/findAllCategories/FindAllCategoriesController";
 import { FindCategoryController } from "./modules/category/findCategory/FindCategoryController";
 import { UpdateCategoryController } from "./modules/category/updateCategory/UpdateCategoryController";
+import { CreateClientController } from "./modules/client/createClient/CreateClientController";
+import { DeleteClientController } from "./modules/client/deleteClient/DeleteClientController";
+import { FindAllClientsController } from "./modules/client/findAllClients/FindAllClientsController";
+import { FindClientController } from "./modules/client/findClient/FindClientController";
+import { UpdateClientController } from "./modules/client/updateClient/UpdateClientController";
 import { CreateUserController } from "./modules/user/createUser/CreateUserController";
 import { DeleteUserController } from "./modules/user/deleteUser/DeleteUserController";
 import { FindAllUsersController } from "./modules/user/findAllUsers/FindAllUsersController";
@@ -28,6 +33,12 @@ const findCategoryController = new FindCategoryController();
 const updateCategoryController = new UpdateCategoryController();
 const deleteCategoryController = new DeleteCategoryController();
 
+const createClientController = new CreateClientController();
+const findlAllClientsController = new FindAllClientsController();
+const findClientController = new FindClientController();
+const updateClientController = new UpdateClientController();
+const deleClientController = new DeleteClientController();
+
 // User
 routes.post('/user/create', createUserController.handle);
 routes.post('/user/login', loginUserController.handle);
@@ -44,6 +55,11 @@ routes.put('/category/update/:id', ensureAuthenticateUser, updateCategoryControl
 routes.delete('/category/delete/:id', ensureAuthenticateUser, deleteCategoryController.handle);
 
 // Client
+routes.post('/client/create', ensureAuthenticateUser, createClientController.handle);
+routes.get('/client/find-all', ensureAuthenticateUser, findlAllClientsController.handle);
+routes.get('/client/find/:id', ensureAuthenticateUser, findClientController.handle);
+routes.put('/client/update/:id', ensureAuthenticateUser, updateClientController.handle);
+routes.delete('/client/delete/:id', ensureAuthenticateUser, deleClientController.handle);
 
 export { routes };
 
