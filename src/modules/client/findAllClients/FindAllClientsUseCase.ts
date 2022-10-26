@@ -11,7 +11,7 @@ class FindAllClientsUseCase {
       skip,
       take,
       orderBy: {
-        created_at: 'asc'
+        created_at: 'desc'
       },
       select: {
         id: true,
@@ -25,6 +25,7 @@ class FindAllClientsUseCase {
         },
         user: {
           select: {
+            id: true,
             name: true,
           }
         },

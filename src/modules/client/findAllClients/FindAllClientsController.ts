@@ -6,10 +6,9 @@ class FindAllClientsController {
     const skip = Number(request.query.skip);
     const take = Number(request.query.take);
 
-    console.log(take);
-
     const findAllClientsUseCase = new FindAllClientsUseCase();
     const clients = await findAllClientsUseCase.execute({ skip, take });
+
 
     return response.json(clients);
   }

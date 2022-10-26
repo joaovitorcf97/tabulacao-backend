@@ -9,8 +9,10 @@ class FindClientController {
 
     const client = await findClientUseCase.execute(id);
 
+    console.log('chamando api...');
     return response.json(client);
   }
 }
 
 export { FindClientController };
+
