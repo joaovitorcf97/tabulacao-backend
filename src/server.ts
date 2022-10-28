@@ -24,4 +24,4 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
   });
 });
 
-app.listen(3333, () => console.log('🚀 Servidor rodando em http://localhost:3333'));
+app.listen(3333, () => console.log('🚀 Servidor rodando!'));
